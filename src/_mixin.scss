@@ -1,0 +1,259 @@
+// 用于iphone6 => 750/10
+$base: 75;
+
+@mixin width($a) {
+  width: $a / $base * 1rem;
+}
+
+@mixin height($a) {
+  height: $a / $base * 1rem;
+}
+
+@mixin left($a) {
+  left: $a / $base * 1rem;
+}
+
+@mixin right($a) {
+  right: $a / $base * 1rem;
+}
+
+@mixin top($a) {
+  top: $a / $base * 1rem;
+}
+
+@mixin bottom($a) {
+  bottom: $a / $base * 1rem;
+}
+
+@mixin max-height($a) {
+  max-height: $a / $base * 1rem;
+}
+
+@mixin min-height($a) {
+  min-height: $a / $base * 1rem;
+}
+
+@mixin max-width($a) {
+  max-width: $a / $base * 1rem;
+}
+
+@mixin line-height($a) {
+  line-height: $a / $base * 1rem;
+}
+
+@mixin padding($a: null, $b: null, $c: null, $d: null) {
+  
+  @if $d {
+    padding: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem $d / $base * 1rem;
+  } @else if $c {
+    padding: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem
+  } @else if $b {
+    padding: $a / $base * 1rem $b / $base * 1rem;
+  } @else {
+    padding: $a / $base * 1rem;
+  }
+}
+
+@mixin padding-left($a) {
+  padding-left: $a / $base * 1rem;
+}
+
+@mixin padding-right($a) {
+  padding-right: $a / $base * 1rem;
+}
+
+@mixin padding-top($a) {
+  padding-top: $a / $base * 1rem;
+}
+
+@mixin padding-bottom($a) {
+  padding-bottom: $a / $base * 1rem;
+}
+
+@mixin margin($a: null, $b: null, $c: null, $d: null) {
+  @if $d {
+    margin: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem $d / $base * 1rem;
+  } @else if $c {
+    margin: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem
+  } @else if $b {
+    margin: $a / $base * 1rem $b / $base * 1rem;
+  } @else {
+    margin: $a / $base * 1rem;
+  }
+}
+
+@mixin margin-left($a) {
+  margin-left: $a / $base * 1rem;
+}
+
+@mixin margin-right($a) {
+  margin-right: $a / $base * 1rem;
+}
+
+@mixin margin-top($a) {
+  margin-top: $a / $base * 1rem;
+}
+
+@mixin margin-bottom($a) {
+  margin-bottom: $a / $base * 1rem;
+}
+
+@mixin border-width($a: null, $b: null, $c: null, $d: null) {
+  border-width: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem $d / $base * 1rem;
+  @if $d {
+    border-width: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem $d / $base * 1rem;
+  } @else if $c {
+    border-width: $a / $base * 1rem $b / $base * 1rem $c / $base * 1rem
+  } @else if $b {
+    border-width: $a / $base * 1rem $b / $base * 1rem;
+  } @else {
+    border-width: $a / $base * 1rem;
+  }
+}
+
+@mixin border($a, $b, $c) {
+  border: $a / $base * 1rem $b $c;
+}
+
+@mixin border-top($a, $b, $c) {
+  border-top: $a / $base * 1rem $b $c;
+}
+
+@mixin border-bottom($a, $b, $c) {
+  border-bottom: $a / $base * 1rem $b $c;
+}
+
+@mixin border-left($a, $b, $c) {
+  border-left: $a / $base * 1rem $b $c;
+}
+
+@mixin border-right($a, $b, $c) {
+  border-right: $a / $base * 1rem $b $c;
+}
+
+@mixin box-shadow($a, $b, $color) {
+  box-shadow: $a / $base * 1rem $b / $base * 1rem $color;
+}
+
+@mixin text-shadow($a, $b, $color) {
+  text-shadow: $a / $base * 1rem $b / $base * 1rem $color;
+}
+
+@mixin font-size($a) {
+  font-size: $a / $base * 1rem;
+}
+
+@mixin background-size ($x, $y) {
+  background-size: $x / $base * 1rem $y / $base * 1rem;
+}
+
+@mixin background-position ($x, $y) {
+  background-position: $x / $base * 1rem $y / $base * 1rem;
+}
+
+@mixin border-radius($a) {
+  -webkit-border-radius: $a / $base * 1rem;
+  -moz-border-radius: $a / $base * 1rem;
+  -ms-border-radius: $a / $base * 1rem;
+  -o-border-radius: $a / $base * 1rem;
+  border-radius: $a / $base * 1rem;
+}
+
+@mixin border-top-right-radius($a) {
+  -webkit-border-top-right-radius: $a / $base * 1rem;
+  -moz-border-top-right-radius: $a / $base * 1rem;
+  -ms-border-top-right-radius: $a / $base * 1rem;
+  -o-border-top-right-radius: $a / $base * 1rem;
+  border-top-right-radius: $a / $base * 1rem;
+}
+
+@mixin border-top-left-radius($a) {
+  -webkit-border-top-left-radius: $a / $base * 1rem;
+  border-top-left-radius: $a / $base * 1rem;
+}
+
+@mixin border-bottom-right-radius($a) {
+  -webkit-border-bottom-right-radius: $a / $base * 1rem;
+  -moz-border-bottom-right-radius: $a / $base * 1rem;
+  -ms-border-bottom-right-radius: $a / $base * 1rem;
+  -o-border-bottom-right-radius: $a / $base * 1rem;
+  border-bottom-right-radius: $a / $base * 1rem;
+}
+
+@mixin border-bottom-left-radius($a) {
+  -webkit-border-bottom-left-radius: $a / $base * 1rem;
+  -moz-border-bottom-left-radius: $a / $base * 1rem;
+  -ms-border-bottom-left-radius: $a / $base * 1rem;
+  -o-border-bottom-left-radius: $a / $base * 1rem;
+  border-bottom-left-radius: $a / $base * 1rem;
+}
+
+// 三角形
+@mixin triangle($a, $topColor, $rightColor, $bottomColor, $leftColor) {
+  width: 0;
+  height: 0;
+  @include border-width($a);
+  border-style: solid;
+  border-color: $topColor $rightColor $bottomColor $leftColor;
+}
+
+@mixin triangle($a, $b, $topColor, $rightColor, $bottomColor, $leftColor) {
+  width: 0;
+  height: 0;
+  @include border-width($a);
+  border-style: solid;
+  border-color: $topColor $rightColor $bottomColor $leftColor;
+}
+
+@mixin linear-gradient($a, $b) {
+  background: $b;
+  background: -moz-linear-gradient(top, $a, rgba(red($b), green($b), blue($b), 1));
+  background: -webkit-gradient(linear, 0 0, 0 bottom, from($a), to(rgba(red($b), green($b), blue($b), 1)));
+  background: -o-linear-gradient(top, $a, rgba(red($b), green($b), blue($b), 1));
+}
+
+@mixin rotate($a: 0) {
+  -webkit-transform: rotate($a);
+  -moz-transform: rotate($a);
+  transform: rotate($a);
+}
+
+@mixin transition($a: all .3s ease) {
+  -webkit-transition: $a;
+  -moz-transition: $a;
+  transition: $a;
+}
+
+@mixin transform($a) {
+  -webkit-transform: $a;
+  -moz-transform: $a;
+  transform: $a;
+}
+
+@mixin transform-origin($a, $b) {
+  -webkit-transform-origin: $a / $base * 1rem $b / $base * 1rem;
+  transform-origin: $a / $base * 1rem $b / $base * 1rem;
+}
+
+
+// 文本只显示一行，超出部分隐藏
+@mixin line-hide {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 删除app中的click背景
+@mixin deleteOutline {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  /* For some Androids */
+}
+
+@mixin ellipsis {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}

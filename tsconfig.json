@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "module": "es6",
+    "removeComments": true,
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "target": "es5",
+    "jsx": "react"
+  },
+
+  "include": [
+    "./src/**/*"
+  ],
+  
+  "exclude": [
+    "node_modules"
+  ]
+}
