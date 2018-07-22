@@ -19,6 +19,10 @@ export default function asyncComponent(importComponent: any): any {
             };
         };
 
+        // shouldComponentUpdate(prevProps: any, nexProps:any): boolean {
+        //     return true;
+        // }
+
         async componentDidMount() {
             const { default: component } = await importComponent();
             this.setState({

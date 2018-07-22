@@ -1,14 +1,12 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-const styles: Styles = require('./index.scss');
+import classnames from 'classnames';
+import CssModules from 'react-css-modules';
+import { TabContentProps as Props } from './tabs-interfaces';
+import styles from './index.scss';
 
-interface Props {
-    panels: any;
-    activeIndex: number;
-};
-
+@CssModules(styles, { allowMultiple: true })
 export default class TabContent extends React.Component<Props, {}>{
-    protected getTabpanes<T>(): any{
+    protected getTabpanes(): any {
         const { activeIndex, panels } = this.props;
 
         return React.Children.map(panels, (child: any) => {
@@ -27,9 +25,12 @@ export default class TabContent extends React.Component<Props, {}>{
         })
     }
 
-    render<T>(): React.ReactElement<T> {
+    public render<T>(): React.ReactElement<T> {
+        const classes = classnames({
+            content: true
+        })
         return (
-            <div className = 'content'>
+            <div className = {classes}>
                 {this.getTabpanes()}
             </div>
         )

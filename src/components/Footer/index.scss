@@ -1,0 +1,19 @@
+@import '../../mixin.scss';
+:global footer{
+    position: fixed;
+    @include right(0);
+    @include left(0);
+    @include bottom(0);
+    @include font-size(34);
+    ul{
+        display: flex;
+        justify-content: space-around;
+        background: red;
+    }
+}
+.footer-link-item{
+    @include padding(20, 0);
+    :global .link-active {
+        background: green;
+    }
+}

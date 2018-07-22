@@ -1,16 +1,8 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import CssModules from 'react-css-modules';
-const styles: Styles = require('./index.scss');
-
-interface Props {
-    tab: string;
-    activeIndex?: number;
-    order: number;
-    disabled?: boolean;
-    isActive?: boolean;
-    className?: string;
-};
+import { TabPaneProps as Props } from './tabs-interfaces';
+import styles from './index.scss';
 
 @CssModules(styles, {allowMultiple: true})
 export default class TabPane extends React.Component<Props, {}> {
@@ -21,12 +13,13 @@ export default class TabPane extends React.Component<Props, {}> {
         const classes = classnames({
             panel: true,
             contentActive: isActive,
-        })
+        });
+
         return (
             <div 
                 role='tabpanel'
                 aria-hidden={!isActive}
-                className={classes}
+                styleName={classes}
             >
                 {children}  
             </div>

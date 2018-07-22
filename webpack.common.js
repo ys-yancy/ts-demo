@@ -41,6 +41,7 @@ module.exports = {
 					options: {
 						modules: true,
 						minimize: true,
+						importLoaders: true,
 						localIdentName: '[path][name]__[local]--[hash:base64:5]'//,
 						// getLocalIdent: (context, localIdentName, localName, options) => {
 						// 	return 'whatever_random_class_name'
@@ -60,6 +61,7 @@ module.exports = {
 						options: {
 							modules: true,
 							minimize: true,
+							importLoaders: true,
 							localIdentName: '[path][name]__[local]--[hash:base64:5]'//,
 							// getLocalIdent: (context, localIdentName, localName, options) => {
 							// 	return 'whatever_random_class_name'

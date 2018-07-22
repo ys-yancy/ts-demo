@@ -1,17 +1,8 @@
 import * as React from 'react';
+import { TabsProps as Props } from './tabs-interfaces';
 import TabNav from './TabNav';
 import TabPane from './TabPane';
 import TabContent from './TabContent';
-
-interface Props {
-    children: any;
-    tabNavIsTop?: boolean;
-    activeIndex?: number;
-    onChange(arg: any): any;
-    defauleActiveIndex?: number;
-    className?: string;
-
-};
 
 export default class Tabs extends React.Component<Props, {}>{
     public state: {
@@ -66,7 +57,7 @@ export default class Tabs extends React.Component<Props, {}>{
         this.props.onChange(activeIndex);
     }
 
-    renderTabNav() {
+    protected renderTabNav<T>(): React.ReactElement<T> {
         return (
             <TabNav 
                 key = 'tabBar'
@@ -77,7 +68,7 @@ export default class Tabs extends React.Component<Props, {}>{
         )
     }
 
-    renderTabContent() {
+    protected renderTabContent<T>(): React.ReactElement<T> {
         return (
             <TabContent
                 key='tabcontent'
@@ -87,7 +78,7 @@ export default class Tabs extends React.Component<Props, {}>{
         )
     }
 
-    render() {
+    public render<T>(): React.ReactElement<T>{
         const { className, tabNavIsTop } = this.props;
 
         return (

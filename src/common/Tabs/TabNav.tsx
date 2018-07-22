@@ -2,13 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import CssModules from 'react-css-modules';
-const styles: Styles = require('./index.scss');
-
-interface Props {
-    panels: any;
-    activeIndex: number;
-    onTabClick(order: number): void;
-};
+import InkBar from './InkBar';
+import { TabNavProps as Props } from './tabs-interfaces';
+import styles from './index.scss';
 
 interface ResultOffset {
     top: number;
@@ -65,14 +61,14 @@ export default class TabNav extends React.Component<Props, {}> {
             const { activeIndex } = this.props;
             const node = ReactDOM.findDOMNode(this);
             const el = (node as HTMLElement).querySelectorAll('li')[activeIndex];
-            this.setState({
+            el && this.setState({
                 inkBarWidth: getOuterWidth(el),
                 inkBarLeft: (getOffset(el) as ResultOffset).left,
             });
         }
     }
 
-    public getTabs(): any {
+    public getTabs<T>(): undefined | React.ReactElement<T>[] {
         const { panels, activeIndex } = this.props;
 
         return React.Children.map(panels, (child: any) => {
@@ -109,7 +105,7 @@ export default class TabNav extends React.Component<Props, {}> {
                     role='tab'
                     aria-disabled = {child.props.disabled ? 'true' : 'false'}
                     aria-selected = {activeIndex === order ? 'true' : 'false'}
-                    className = {classes}
+                    styleName = {classes}
                     {...events}
                     {...ref}
                 >
@@ -127,6 +123,7 @@ export default class TabNav extends React.Component<Props, {}> {
         })
         return (
             <div role='tablist'>
+                <InkBar width={100} left = {20} />
                 <ul className = {classes}>
                     {this.getTabs()}
                 </ul>

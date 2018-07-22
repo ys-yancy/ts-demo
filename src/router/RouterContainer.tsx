@@ -25,6 +25,13 @@ export default class RouterContainer extends React.Component<{}> {
     render(): any {
         return (
             <Switch>
+
+                {
+                    <Route exact path='/index' render={(): any => {
+                        return <Redirect to='index/message' />
+                    }} />
+                }
+                
                 {
                     routers.map((item: any, index: number): any => {
                         // https://reacttraining.com/react-router/web/example/route-config;
@@ -41,6 +48,7 @@ export default class RouterContainer extends React.Component<{}> {
                         return <Redirect to='index/message' />
                     }} />
                 }
+
             </Switch>
         )
     }
