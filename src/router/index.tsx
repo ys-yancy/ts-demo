@@ -2,14 +2,14 @@ export default [{
     "url": "/index",
     "component": (): any => {
         return require.ensure([], () => {
-            return require('../components/Main/index');
+            return require('../pages/main/index');
         });
     },
     children: [{
-        "url": "/index/about",
+        "url": "/index/message",
         "component": (): any => {
             return require.ensure([], () => {
-                return require('../components/Header/index');
+                return require('../pages/message/index');
             });
         },
     }]

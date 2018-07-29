@@ -1,40 +1,37 @@
-import * as React from "react";
+import * as React from 'react';
 import SubRoute from './../../router/SubRoute';
-import Footer from '../Footer/index';
-import Header from '../Header/index';
+import Header from '../../components/Header/index';
+import Footer from '../../components/Footer/index';
+import './index.scss';
 
-// const styles: Styles = require('./index.scss');
+interface Router {
+    url: string;
+    component: () => any;
+
+};
 
 interface Props {
-    routers: any[];
-}
+    routers: Router[];
+};
 
-interface state {
-    classNames: string;
-    toggleClassName: string;
-    folded: boolean;
-}
 
 export default class MainContainer extends React.Component<Props, {}> {
-    public state: state;
     constructor(options: any) {
         super(options);
     };
 
-    componentDidMount() {
-
-    }
-
     showMore() {
-        
+        console.log('showmore...');
     }
 
-    render(): any {
+    render() {
         let { routers } = this.props;        
         return (
-            <section>
+            <section className='main'>
                 <Header showMore={this.showMore}/>
+
                 {routers.map((router, i) => <SubRoute key={i} {...router} />)}
+
                 <Footer />
             </section>
         )

@@ -1,0 +1,79 @@
+@import '../../mixin';
+.session-list{
+    :global {
+        a{
+            color: inherit;
+        }
+        .session-item{
+            @include padding(10, 0);
+        }
+        .avatar-wrapper {
+            display: inline-block;
+            @include padding(0, 30);
+            vertical-align: top;
+            .img-wrapper{
+                @include width(90);
+                @include height(90);
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .content-wrapper{
+            display: inline-block;
+            @include padding-bottom(30);
+            @include border-bottom(1, solid, #ccc);
+            vertical-align: top;
+            .name-and-time {
+                @include height(45);
+            }
+            .message-and-count {
+                position: relative;
+                @include height(50);
+            }
+            .name,
+            .message{
+                display: inline-block;
+                @include width(450);
+                @include line-height(50);
+                @include font-size(34);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .name{
+                vertical-align: top;
+            }
+            .message {
+                @include line-height(30);
+                @include font-size(30);
+                font-weight: 300;
+            }
+            .time{
+                display: inline-block;
+                @include width(125);
+                @include padding-right(25);
+                @include font-size(24);
+                @include line-height(40);
+                vertical-align: top;
+                text-align: right;
+            }
+            .count{
+                position: absolute;
+                @include width(40);
+                @include height(40);
+                @include line-height(40);
+                @include right(25);
+                @include bottom(0);
+                @include font-size(26);
+                text-align: center;
+                color: #fff;
+                background: red;
+                border-radius: 50%;
+            }
+        }
+    }
+}

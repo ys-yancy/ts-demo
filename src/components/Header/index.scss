@@ -1,10 +1,17 @@
 @import '../../mixin';
-:global(.common-header){
+:global .common-header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
     @include height(80);
     @include line-height(80);
     @include padding(0, 30);
     @include font-size(34);
-    background: red;
+    text-align: center;
+    color: #fff;
+    background: rgb(79, 132, 289);
 };
 
 .avatar_outer_wrapper{
@@ -23,6 +30,7 @@
 }
 
 .show_more{
+    font-family: "iconfont" !important;
     float: right;
     @include font-size(44);
 }

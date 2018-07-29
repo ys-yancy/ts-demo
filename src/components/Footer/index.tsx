@@ -7,32 +7,58 @@ import styles from './index.scss';
 interface LinkProps {
     link: string;
     text: string;
+    icon: string;
+    className: string;
 }
-interface Props {
-    
-};
 
 @CssModules(styles, { allowMultiple: true })
-export default class MainFooter extends React.Component<Props, {}>{
+export default class MainFooter extends React.Component<any>{
     public state: {
         activeIndex: number;
     };
 
-    private getFooter(): any {
-        const links: LinkProps[] = [
-            { link: '/index/message',  text: '消息' },
-            { link: '/index/session', text: '联系' },
-            { link: '/index/condition', text: '动态' },
-        ];
+    public getFooterItems(): LinkProps[] {
+        return [
+            {   link: '/index/message', 
+                className: 'message',  
+                text: '消息',
+                icon: '&#xe66d;',
+            }, 
 
-        return links.map((link, index ) => {
-            let { link: href, text } = link;
+            { 
+                link: '/index/session', 
+                className: 'session', 
+                text: '联系',
+                icon: '&#xe622;',
+            },
+
+            { 
+                link: '/index/condition', 
+                className: 'condition', 
+                text: '动态',
+                icon: '&#xe662;',
+            },
+        ];
+    }
+
+    private getFooter() {
+        const linkItems = this.getFooterItems();
+
+        return linkItems.map((link, index ) => {
+            let { link: href, text, icon, className } = link;
+            let iconClass = `${className}-icon`
             let classes = classnames({
                 'footer-link-item': true
             });
             return (
                 <li key={href}  styleName={classes}>
-                    <NavLink to={href} activeClassName='link-active'>{text}</NavLink>
+                    <NavLink to={href} activeClassName='link-active'>
+                        <span styleName={iconClass} data-rule='icon' 
+                        dangerouslySetInnerHTML={{
+                            __html: icon
+                        }}></span>
+                        <span className='link-desc'>{text}</span>
+                    </NavLink>
                 </li>
             )
         })

@@ -1,0 +1,5 @@
+@import '../../mixin';
+:global .main{
+    @include padding-top(80);
+    @include padding-bottom(70);
+}

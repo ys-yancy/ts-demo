@@ -4,16 +4,52 @@
     @include right(0);
     @include left(0);
     @include bottom(0);
-    @include font-size(34);
+    @include font-size(20);
     ul{
         display: flex;
         justify-content: space-around;
-        background: red;
+        @include border-top(1, solid, #ccc);
+        background: #fff;
     }
 }
 .footer-link-item{
-    @include padding(20, 0);
-    :global .link-active {
-        background: green;
+    @include padding(6, 0);
+    :global {
+        a {
+            color: #ccc;
+        }
+        .link-active{
+            color: rgb(79, 132, 289);
+            [data-rule=icon] {
+                color: rgb(79, 132, 289);
+            }
+        }
+        .link-desc{
+            display: inline-block;
+            @include width(54);
+            @include line-height(24);
+            text-align: center;
+        }
     }
+}
+
+.message-icon{
+    display: block;
+    font-family:"iconfont" !important;
+    @include line-height(45);
+    @include font-size(50);
+}
+
+.session-icon{
+    display: block;
+    font-family:"iconfont" !important;
+    @include line-height(45);
+    @include font-size(50);
+}
+
+.condition-icon{
+    display: block;
+    font-family:"iconfont" !important;
+    @include line-height(45);
+    @include font-size(50);
 }

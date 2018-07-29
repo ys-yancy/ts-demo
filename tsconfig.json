@@ -13,6 +13,11 @@
     "jsx": "react"
   },
 
+  "lib": [
+    "es2015",
+    "dom",
+  ],
+
   "include": [
     "./src/**/*"
   ],
