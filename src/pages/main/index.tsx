@@ -1,6 +1,7 @@
 import * as React from 'react';
 import SubRoute from './../../router/SubRoute';
 import Header from '../../components/Header/index';
+import Search from '../../components/Search/index';
 import Footer from '../../components/Footer/index';
 import './index.scss';
 
@@ -25,11 +26,12 @@ export default class MainContainer extends React.Component<Props, {}> {
     }
 
     render() {
-        let { routers } = this.props;        
+        let { routers } = this.props;
+        let currRouter: string = (this.props as any).location.pathname;
         return (
             <section className='main'>
-                <Header showMore={this.showMore}/>
-
+                <Header currRouter={currRouter} showMore={this.showMore}/>
+                <Search />
                 {routers.map((router, i) => <SubRoute key={i} {...router} />)}
 
                 <Footer />

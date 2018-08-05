@@ -1,0 +1,27 @@
+@import '../../mixin';
+$session-border-color: #ccc;
+.session-routes{
+    @include font-size(30);
+    border-bottom: 1px solid $session-border-color;
+    a{
+        color: rgba(0, 0, 0, .8);
+    }
+}
+
+
+.item{
+    @include padding(18, 30);
+    border-top: 1px solid $session-border-color;
+    :global {
+        .arrow{
+            float: right;
+            @include width(44);
+            @include height(44);
+            @include line-height(44);
+            @include font-size(38);
+            text-align: right;
+            font-family: "iconfont"!important;
+            color: #999;
+        }
+    }
+}

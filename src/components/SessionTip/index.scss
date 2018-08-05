@@ -1,0 +1,45 @@
+@import '../../mixin';
+.common-session-tip{
+    @include font-size(26);
+    @include margin-bottom(30);
+    :global {
+        .wrapper {
+            @include width(700);
+            @include height(210);
+            @include padding(30, 30);
+            border: 1px solid, #ccc;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .session-tip-avatar{
+            float: left;
+            @include width(150);
+            @include height(150);
+            border-radius: 50%;
+            overflow: hidden;
+            .img-wrapper,
+            .img {
+                @include width(150);
+                @include height(150);
+            }
+        }
+        .session-tip-content {
+            float: right;
+            @include width(450);
+            @include height(150);
+            @include padding-top(5);
+        }
+        .title {
+            @include ellipsis;
+            @include font-size(36);
+        }
+        .desc{
+            @include ellipsis;
+            color: #999;
+        }
+    }
+}
+
+.is-show-tip{
+    font: outline;
+}

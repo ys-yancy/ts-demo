@@ -12,5 +12,19 @@ export default [{
                 return require('../pages/message/index');
             });
         },
+    }, {
+            "url": "/index/session",
+            "component": (): any => {
+                return require.ensure([], () => {
+                    return require('../pages/session/index');
+                });
+            },
     }]
+}, {
+    "url": "/search",
+    "component": (): any => {
+        return require.ensure([], () => {
+            return require('../pages/search/index');
+        });
+    }
 }];

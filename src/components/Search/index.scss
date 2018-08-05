@@ -1,0 +1,25 @@
+@import '../../mixin';
+.common-search {
+    @include width(750);
+    @include padding(15);
+    @include margin-bottom(15);
+    @include font-size(26);
+    box-sizing: border-box;
+    background: inherit;
+    :global .search-input{
+        @include line-height(50);
+        @include padding(0, 12);
+        @include border-radius(6);
+        background: rgba(204, 204, 204, .3);
+    }
+}
+.search-icon{
+    display: inline-block;
+    font-family: "iconfont" !important;
+    @include width(40);
+    @include height(40);
+    color: #ccc;
+}
+.placeholder{
+    color: #999;
+}

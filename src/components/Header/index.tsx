@@ -3,12 +3,41 @@ const styles: Styles = require('./index.scss');
 
 interface Props { 
     title?: string;
+    currRouter?: string | undefined | null;
     showMore: (data?: any) => void;
 };
+
+interface State {
+    title: string;
+}
 
 export default class MainFooter extends React.Component<Props, any>{
     constructor(options: any) {
         super(options);
+        this.state = {
+            title: '消息'
+        };
+    }
+
+    componentWillMount() {
+        let { currRouter } = this.props;
+        let title = '';
+
+        switch (currRouter) {
+            case '/index/session':
+                title = '联系人';
+                break;
+            case '/index/condition':
+                title = '动态';
+                break;
+            default:
+                title = '消息';
+                break;
+        };
+
+        this.setState({
+            title,
+        })
     }
 
     showMore(e: React.MouseEvent) {
@@ -17,7 +46,7 @@ export default class MainFooter extends React.Component<Props, any>{
     }
 
     render() {
-        let { title = '消息' } = this.props;
+        let { title } = this.state;
         return (
             <header className='common-header'>
                 <div className={styles.avatar_outer_wrapper}>
