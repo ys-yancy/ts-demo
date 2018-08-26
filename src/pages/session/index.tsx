@@ -5,6 +5,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Tip from '../../components/SessionTip/index';
 import Routes from '../../components/SessionRoutes/index';
+import Title from './title';
+import getTitleList from './mobx';
+
 
 class Item extends React.Component<any>{
     getItems() {
@@ -48,9 +51,7 @@ export default class Session extends React.Component<any> {
             <React.Fragment>
                 {renderTip}
                 <Routes />
-                <div>
-                    11
-                </div>
+                <Title getTitleList={getTitleList} currentTitle="friends"/>
             </React.Fragment>
         )
     }

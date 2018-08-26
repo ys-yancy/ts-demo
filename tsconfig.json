@@ -9,12 +9,19 @@
     "preserveConstEnums": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es5",
-    "jsx": "react"
+    "target": "es6",
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es2015",
+      "dom",
+      "scripthost"
+    ]
   },
 
   "lib": [
-    "es2015",
+    "ES5",
+    "es2016",
     "dom",
   ],
 
