@@ -9,6 +9,7 @@ import { Title as Titleface } from './mobx';
 
 interface TitleProps {
     getTitleList: () => any;
+    clickCallback?: (arg: Titleface) => void;
     currentTitle: string;
 };
 
@@ -47,7 +48,9 @@ export default class Title extends React.Component<TitleProps, any> {
 
         this.setState({
             currentTitle: nextTitle.nameSpell
-        })
+        });
+
+        this.props.clickCallback && this.props.clickCallback(nextTitle);
     }
 
     renderItems() {

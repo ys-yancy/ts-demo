@@ -22,7 +22,7 @@ interface State {
 }
 
 export default class SessionList extends React.Component<Props, State> {
-
+	static Items = SessionItem;
 	constructor(props: Props) {
 		super(props);
 

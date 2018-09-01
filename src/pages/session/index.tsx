@@ -6,7 +6,8 @@ import * as ReactDOM from 'react-dom';
 import Tip from '../../components/SessionTip/index';
 import Routes from '../../components/SessionRoutes/index';
 import Title from './title';
-import getTitleList from './mobx';
+import Group from './group';
+import getTitleList, { getGroupList, Group as GroupInterface, Title as Titleface } from './mobx';
 
 
 class Item extends React.Component<any>{
@@ -31,7 +32,32 @@ class Item extends React.Component<any>{
     }
 }
 
-export default class Session extends React.Component<any> {
+export default class Session extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props);
+        this.clickTitle = this.clickTitle.bind(this);
+
+        this.state = {
+            groupList: []
+        }
+    }
+
+    componentWillMount() {
+        this.getGroupList();
+    }
+
+    clickTitle(title: Titleface) {
+        this.getGroupList(title);
+    }
+
+    async getGroupList(title?: Titleface) {
+        let list = await getGroupList(title);
+
+        this.setState({
+            groupList: list
+        });
+    }
+
     getTipContent() {
         const tipProps = {
             avatar: 'https://pic.qqtn.com/up/2018-7/2018073108442699856.jpg',
@@ -45,13 +71,18 @@ export default class Session extends React.Component<any> {
     }
 
     render() {
+        let { groupList } = this.state;
         const renderTip = this.getTipContent();
-
+        
         return (
             <React.Fragment>
                 {renderTip}
                 <Routes />
-                <Title getTitleList={getTitleList} currentTitle="friends"/>
+                <Title currentTitle="friends" 
+                    getTitleList={getTitleList}
+                    clickCallback={this.clickTitle}
+                    />
+                <Group groupList={groupList}/>
             </React.Fragment>
         )
     }

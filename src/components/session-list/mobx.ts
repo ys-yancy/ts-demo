@@ -2,7 +2,7 @@
  * Mobx SessionList
 */
 
-interface Session {
+export interface Session {
 	name: string;
 	avatar: string;
 	lastMessage: any;
@@ -15,7 +15,7 @@ function getSessionId(): string {
 	return Math.random().toString(10).substr(3);
 }
 
-function createSession(index: number): Session {
+export function createSession(index: number): Session {
 	return {
 		name: `我的DEMO-${index}`,
 		avatar: 'http://imgtu.5011.net/uploads/content/20170209/4934501486627131.jpg',
