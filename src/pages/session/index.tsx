@@ -9,29 +9,6 @@ import Title from './title';
 import Group from './group';
 import getTitleList, { getGroupList, Group as GroupInterface, Title as Titleface } from './mobx';
 
-
-class Item extends React.Component<any>{
-    getItems() {
-        let items: string[] = ['好友', '家人'];
-
-        return items.map((item: string, index: number) => {
-            return (
-                <div className="group-item" key={index}>
-                    <span className="name"></span>
-                    <div className="session-list">
-
-                    </div>
-                </div>
-            )
-        })
-    }
-    render() {
-        return {
-
-        }
-    }
-}
-
 export default class Session extends React.Component<any, any> {
     constructor(props: any) {
         super(props);

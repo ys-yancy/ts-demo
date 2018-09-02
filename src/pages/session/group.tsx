@@ -72,7 +72,7 @@ export default class Group extends React.Component<any, any> {
             return (
                 <div {...events} styleName={classes} key={groupName}>
                     <div className='group-title'>
-                        <span className='arrow'></span>
+                        <span className='arrow' dangerouslySetInnerHTML={{ __html: '&#xe75c;' }}></span>
                         <span className="name">{groupName}</span>
                         <span className='count'>{all_online}/{all_count}</span>
                     </div>

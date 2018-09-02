@@ -23,5 +23,35 @@
     }
 }
 .session-group{
-    background: #ffffff;
+    @include font-size(34);
+    :global{
+        .group-title{
+            @include line-height(80);
+        }
+        .arrow{
+            @include width(44);
+            @include height(44);
+            @include line-height(44);
+            @include margin-right(12);
+            @include margin-left(12);
+            @include font-size(38);
+            text-align: right;
+            font-family: "iconfont"!important;
+            color: rgba(202, 133, 133, .6);
+            &.open{
+                transform:rotate(7deg);
+                -ms-transform:rotate(7deg); 	/* IE 9 */
+                -moz-transform:rotate(7deg); 	/* Firefox */
+                -webkit-transform:rotate(7deg); /* Safari 和 Chrome */
+                -o-transform:rotate(7deg); 	/* Opera */
+            }
+        }
+        .count{
+            float: right;
+            @include font-size(24);
+            @include margin-right(36);
+            vertical-align: middle;
+            color:  rgba(202, 133, 133, .6);;
+        }
+    }
 }
