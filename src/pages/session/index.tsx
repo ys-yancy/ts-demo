@@ -7,7 +7,22 @@ import Tip from '../../components/SessionTip/index';
 import Routes from '../../components/SessionRoutes/index';
 import Title from './title';
 import Group from './group';
-import getTitleList, { getGroupList, Group as GroupInterface, Title as Titleface } from './mobx';
+import Contacts from '../../components/contacts/index';
+import getTitleList, { getGroupList } from './mobx';
+
+export interface Titleface {
+    name: string;
+    nameSpell: string;
+    id?: string;
+}
+
+export interface Titleface {
+    groupName: string;
+    all_count: number;
+    all_online: number;
+    isOpen: boolean;
+    contacts: Contacts[];
+}
 
 export default class Session extends React.Component<any, any> {
     constructor(props: any) {
@@ -23,8 +38,12 @@ export default class Session extends React.Component<any, any> {
         this.getGroupList();
     }
 
-    clickTitle(title: Titleface) {
-        this.getGroupList(title);
+    async clickTitle(title: Titleface) {
+        let list = await getGroupList(title);
+
+        this.setState({
+            groupList: list
+        });
     }
 
     async getGroupList(title?: Titleface) {

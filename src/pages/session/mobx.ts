@@ -1,20 +1,22 @@
 /**
- * session Titls mobx
+ * Conatcs Titls mobx
  */
-import { Session, createSession } from '../../components/session-list/mobx';
 
-export interface Title {
+import { Contacts } from '../../components/contacts/index';
+import { createContact } from '../../components/contacts/mobx';
+
+interface Title {
     name: string;
     nameSpell: string;
     id?: string;
 }
 
-export interface Group {
+interface Group {
     groupName: string;
     all_count: number;
     all_online: number;
     isOpen: boolean;
-    sessions: Session[];
+    contacts: Contacts[];
 }
 
 let getTitleId: () => string = () => {
@@ -27,10 +29,10 @@ let createTitle: <T>(item: T) => T = (item) => {
     }, item);
 }
 
-let getSessions: <T>(count?: number) => T[] = (count = 20) => {
+let getContacts: <T>(count?: number) => T[] = (count = 20) => {
     let result: any[] = [];
     for (let i = 0; i < count; i++) {
-        result.push(createSession(i));
+        result.push(createContact(i));
     };
 
     return result;
@@ -53,34 +55,51 @@ let list = [{
     nameSpell: 'frindes'
 }];
 
-let groupList = [
+let friends = [
     {
         groupName: '特别关心',
         all_count: 5,
         all_online: 2,
         isOpen: false,
-        sessions: getSessions<Session>(5)
+        contacts: getContacts<Contacts>(5)
     },
     {
         groupName: '同学',
         all_count: 100,
         all_online: 90,
         isOpen: false,
-        sessions: getSessions<Session>(100)
+        contacts: getContacts<Contacts>(100)
     },
     {
         groupName: '朋友',
         all_count: 80,
         all_online: 50,
         isOpen: false,
-        sessions: getSessions<Session>(80)
+        contacts: getContacts<Contacts>(80)
     },
     {
         groupName: '家人',
         all_count: 15,
         all_online: 10,
         isOpen: false,
-        sessions: getSessions<Session>(15)
+        contacts: getContacts<Contacts>(15)
+    }
+]
+
+let groupChat = [
+    {
+        groupName: '高中聚会',
+        all_count: 50,
+        all_online: 48,
+        isOpen: false,
+        contacts: getContacts<Contacts>(50)
+    },
+    {
+        groupName: '大学',
+        all_count: 100,
+        all_online: 90,
+        isOpen: false,
+        contacts: getContacts<Contacts>(100)
     }
 ]
 
@@ -91,5 +110,9 @@ export default async function() {
 }
 
 export async function getGroupList(title: Title) {
-    return groupList;
+    if (title && title.nameSpell === 'groupChat') {
+        return groupChat;
+    }
+
+    return friends;
 }

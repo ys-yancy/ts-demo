@@ -5,7 +5,12 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './index.scss';
 import cssModules from 'react-css-modules';
-import { Title as Titleface } from './mobx';
+
+export interface Titleface {
+    name: string;
+    nameSpell: string;
+    id?: string;
+}
 
 interface TitleProps {
     getTitleList: () => any;

@@ -24,6 +24,13 @@
 }
 .session-group{
     @include font-size(34);
+    &.open {
+        :global{
+            .arrow-wrapper {
+                background: inherit;
+            }
+        }
+    }
     :global{
         .group-title{
             @include line-height(80);

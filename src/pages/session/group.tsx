@@ -6,8 +6,17 @@ import * as React from 'react';
 import classNames from 'classnames';
 import cssModules from 'react-css-modules';
 import styles from './index.scss';
-import SessionList from '../../components/session-list/index';
-import {  Group as GroupInterface } from './mobx';
+import ContactList, { Contacts } from '../../components/contacts/index';
+
+interface GroupInterface {
+    groupName: string;
+    all_count: number;
+    all_online: number;
+    isOpen: boolean;
+    contacts: Contacts[];
+}
+
+export { GroupInterface as Group };
 
 @cssModules(styles, { allowMultiple: true })
 export default class Group extends React.Component<any, any> {
@@ -49,8 +58,8 @@ export default class Group extends React.Component<any, any> {
     }
 
     renderGroupItems(group: GroupInterface) {
-        let sessions = group.sessions;
-        return <SessionList.Items list={sessions}/>
+        let contacts = group.contacts;
+        return <ContactList.Items list={contacts}/>
     }
 
     renderGroup() {
@@ -60,7 +69,8 @@ export default class Group extends React.Component<any, any> {
             let { isOpen, groupName, all_online, all_count } = group;
 
             let classes = classNames({
-                'session-group': true
+                'session-group': true,
+                'open': isOpen
             });
 
             let events = {
@@ -72,7 +82,9 @@ export default class Group extends React.Component<any, any> {
             return (
                 <div {...events} styleName={classes} key={groupName}>
                     <div className='group-title'>
-                        <span className='arrow' dangerouslySetInnerHTML={{ __html: '&#xe75c;' }}></span>
+                        <span className="arrow-wrapper">
+                            <span className='arrow' dangerouslySetInnerHTML={{ __html: '&#xe75c;' }}></span>
+                        </span>
                         <span className="name">{groupName}</span>
                         <span className='count'>{all_online}/{all_count}</span>
                     </div>
