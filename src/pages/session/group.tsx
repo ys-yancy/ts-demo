@@ -30,9 +30,16 @@ export default class Group extends React.Component<any, any> {
         }
     }
 
-    componentWillReceiveProps(props: any) {
-        let { groupList } = props;
+    componentWillMount() {
+        this.updatePanel(this.props);
+    }
 
+    componentWillReceiveProps(props: any) {
+        this.updatePanel(props);
+    }
+
+    updatePanel(data: any) {
+        let { groupList } = data;
         this.setState({
             groups: groupList
         });

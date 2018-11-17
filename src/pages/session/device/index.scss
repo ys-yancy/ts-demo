@@ -1,0 +1,40 @@
+@import '../../../mixin';
+.device-list {
+    width: 100%;
+}
+
+.device-item {
+    width: 100%;
+    @include padding(10, 0);
+    :global {
+        .avatar-wrapper {
+            display: inline-block;
+            @include padding(0, 30);
+            .avatar {
+                @include width(90);
+                @include height(90);
+                border-radius: 50%;
+            }
+        }
+        .content{
+            float: right;
+            @include width(600);
+            @include padding-bottom(20);
+            @include border-bottom(1, solid, #ccc);
+            vertical-align: top;
+            .name{
+                @include width(450);
+                @include line-height(50);
+                @include font-size(34);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .desc{
+                @include font-size(24);
+                @include margin-right(12);
+                vertical-align: bottom;
+            }
+        }
+    }
+}

@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { Router, HashRouter } from 'react-router-dom';
 import RouterContainer from '../router/RouterContainer';
+import customHistory from '../common/customBrowserHistory/index';
 
-export default class App extends React.Component<{}> {
+export default class App extends React.Component<any, any> {
     render(): any {
         return (
-            <BrowserRouter>
+            <Router history={customHistory}>
                 <React.Fragment>
                     <RouterContainer />
                 </React.Fragment>
-            </BrowserRouter>
+            </Router>
         )
     }
 }

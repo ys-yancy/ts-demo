@@ -1,5 +1,6 @@
 /**
  * 联系人
+ * 需要重构
  */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -7,6 +8,7 @@ import Tip from '../../components/SessionTip/index';
 import Routes from '../../components/SessionRoutes/index';
 import Title from './title';
 import Group from './group';
+import Device from './device/device';
 import Contacts from '../../components/contacts/index';
 import getTitleList, { getGroupList } from './mobx';
 
@@ -30,7 +32,8 @@ export default class Session extends React.Component<any, any> {
         this.clickTitle = this.clickTitle.bind(this);
 
         this.state = {
-            groupList: []
+            groupList: [],
+            showDevicePanel: false,
         }
     }
 
@@ -39,10 +42,18 @@ export default class Session extends React.Component<any, any> {
     }
 
     async clickTitle(title: Titleface) {
-        let list = await getGroupList(title);
+        if (title.nameSpell === 'device') {
+            this.setState({
+                showDevicePanel: true
+            });
 
+            return;
+        };
+
+        let list = await getGroupList(title);
         this.setState({
-            groupList: list
+            groupList: list,
+            showDevicePanel: false
         });
     }
 
@@ -67,7 +78,7 @@ export default class Session extends React.Component<any, any> {
     }
 
     render() {
-        let { groupList } = this.state;
+        let { groupList, showDevicePanel } = this.state;
         const renderTip = this.getTipContent();
         
         return (
@@ -78,7 +89,11 @@ export default class Session extends React.Component<any, any> {
                     getTitleList={getTitleList}
                     clickCallback={this.clickTitle}
                     />
-                <Group groupList={groupList}/>
+                {
+                    showDevicePanel ? 
+                        <Device/> :
+                        <Group groupList={groupList}/>
+                }
             </React.Fragment>
         )
     }
