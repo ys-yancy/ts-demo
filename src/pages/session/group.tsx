@@ -6,53 +6,50 @@ import * as React from 'react';
 import classNames from 'classnames';
 import cssModules from 'react-css-modules';
 import styles from './index.scss';
-import ContactList, { Contacts } from '../../components/contacts/index';
+import ContactList, { ContactsInterface } from '../../components/contacts/index';
 
-interface GroupInterface {
+export interface GroupInterface {
     groupName: string;
     all_count: number;
     all_online: number;
     isOpen: boolean;
-    contacts: Contacts[];
-}
+    contacts: ContactsInterface[];
+};
 
-export { GroupInterface as Group };
+export interface GroupStates {
+    groups: any[];
+}
 
 @cssModules(styles, { allowMultiple: true })
 export default class Group extends React.Component<any, any> {
-    static propsType: {}
-
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            groups: []
-        }
+    state: GroupStates = {
+        groups: [],
     }
 
     componentWillMount() {
-        this.updatePanel(this.props);
+        this.update(this.props);
     }
 
-    componentWillReceiveProps(props: any) {
-        this.updatePanel(props);
+    componentWillReceiveProps(nextProps: any) {
+        this.update(nextProps);
     }
 
-    updatePanel(data: any) {
-        let { groupList } = data;
+    update(props: any) {
+        let { groupList: groups} = props;
+
         this.setState({
-            groups: groupList
+            groups,
         });
     }
 
     clickGroup(group: GroupInterface) {
-        let prevGroupList = this.state.groups;
-        let currentGroupName = group.groupName;
-        let nextGroupList = null;
-        
+        let currentName = group.groupName;
+        let prevList = this.state.groups;
+        let nextList;
 
-        nextGroupList = prevGroupList.map((item: GroupInterface) => {
-            if (currentGroupName === item.groupName) {
+
+        nextList = prevList.map((item: GroupInterface) => {
+            if (currentName === item.groupName) {
                 item.isOpen = !item.isOpen;
             };
 
@@ -60,13 +57,13 @@ export default class Group extends React.Component<any, any> {
         });
 
         this.setState({
-            groups: nextGroupList
+            groups: nextList
         })
     }
 
     renderGroupItems(group: GroupInterface) {
-        let contacts = group.contacts;
-        return <ContactList.Items list={contacts}/>
+        let { contacts } = group;
+        return <ContactList.ContactItem list={contacts}/>
     }
 
     renderGroup() {
@@ -106,16 +103,17 @@ export default class Group extends React.Component<any, any> {
 
     render() {
         let groups = this.renderGroup();
-        let hasData = groups.length > 0;
-        return (
-            <React.Fragment>
-                {
-                    hasData ? groups :
-                            <div>
-                                <span>no has data ...</span>
-                            </div>
-                }
-            </React.Fragment>
-        )
+        let content: React.ReactNode = null;
+        if (groups.length > 0) {
+            content = groups;
+        } else {
+            content = (
+                <div>
+                    <span>当前没有数据...</span>
+                </div>
+            )
+        };
+
+        return content;
     }
 }

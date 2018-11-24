@@ -36,11 +36,8 @@ export default class SessionRoutes extends React.Component<any> {
     }
 
     render() {
-        const classes = classnames({
-            "session-routes": true
-        });
         return (
-            <div styleName={classes}>
+            <div styleName={classnames({"session-routes": true})}>
                 <ul className="list">
                     {this.getItems()}
                 </ul>

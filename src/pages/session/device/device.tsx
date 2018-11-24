@@ -7,7 +7,7 @@ import cssModules from 'react-css-modules';
 import customHistory from '../../../common/customBrowserHistory/index';
 import styles from './index.scss';
 
-interface DeviceInterface {
+export interface DeviceInterface {
     name: string;
     desc: string;
     avatar: string;

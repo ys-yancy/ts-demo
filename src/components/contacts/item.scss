@@ -1,12 +1,9 @@
 @import '../../mixin';
-.contact-list{
+.app-contact-item{
+    @include padding(10, 0);
+    color: rgba(0,0,0,.8);
+    list-style: none;
     :global {
-        a{
-            color: inherit;
-        }
-        .contact-item{
-            @include padding(10, 0);
-        }
         .avatar-wrapper {
             display: inline-block;
             @include padding(0, 30);

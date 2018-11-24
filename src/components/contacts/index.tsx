@@ -1,53 +1,71 @@
 import * as React from 'react';
 import ContactItem, { Contacts } from './Item';
-import { getContactList } from './mobx';
+import * as contactApi  from './mobx';
 
-interface State {
+export { Contacts as ContactsInterface };
+
+
+export interface ContactListProps {
+    prefixCls?: string
+}
+
+export interface ContactListStates {
     loading: boolean;
     contactList: Contacts[];
 }
 
-export { Contacts };
+export default class ContactList extends React.Component<ContactListProps, ContactListStates> {
+    static ContactItem: typeof ContactItem = ContactItem;
 
-export default class ContactList extends React.Component<any, State> {
-    static Items = ContactItem;
-    constructor(props: any) {
-        super(props);
+    static defaultProps = {
+        prefixCls: 'app-contact-list',
+    };
 
-        this.state = {
-            loading: true,
-            contactList: [],
-        }
+    state: any = {
+        loading: true,
+        contactList: [],
     }
 
-    //todo 编辑不支持async 之后具体改进一下
     componentDidMount() {
-        this.getcontactList();
+        this.getContactList();
     }
 
-    getcontactList() {
-        getContactList().then(list => {
-            this.hideLoading();
-            this.setState({
-                contactList: list
-            });
-        });
-    }
-
-    hideLoading() {
+    async getContactList() {
+        let contactList = await contactApi.getContactList();
         this.setState({
+            contactList,
             loading: false,
         });
+    };
+
+    renderLoading() {
+        let styles = {
+            display: 'block', 
+            height: '5rem', 
+            paddingTop: '2rem', 
+            textAlign: 'center', 
+            fontSize: '.42rem'
+        }
+        return (
+            <span style={{...styles}}>加载中...</span>
+        )
     }
 
-
     render() {
-        const { loading: isShowLoading, contactList: list } = this.state;
+        let { prefixCls } = this.props;
+        let { loading: isShowLoading, contactList } = this.state;
+        let contents: React.ReactNode = null;
 
-        return (
-            isShowLoading ?
-                <span style={{ display: 'block', height: '5rem', paddingTop: '2rem', textAlign: 'center', fontSize: '.42rem' }}>加载中...</span> :
-                <ContactItem list={list} />
-        );
+        if (isShowLoading) {
+            contents = this.renderLoading();
+        } else {
+            contents =  (
+                <ul className={`${prefixCls}-inner`}>
+                    <ContactItem list={contactList} />
+                </ul>
+            );
+        }
+        
+        return contents;
     }
 }

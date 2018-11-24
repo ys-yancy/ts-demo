@@ -2,7 +2,7 @@
  * Conatcs Titls mobx
  */
 
-import { Contacts } from '../../components/contacts/index';
+import { ContactsInterface as Contacts } from '../../components/contacts/index';
 import { createContact } from '../../components/contacts/mobx';
 
 interface Title {
@@ -47,13 +47,14 @@ let list = [{
 }, {
     name: '设备',
     nameSpell: 'device'
-}, {
-    name: '通讯录',
-    nameSpell: 'contacts'
-}, {
-    name: '公众号',
-    nameSpell: 'frindes'
 }];
+// , {
+//     name: '通讯录',
+//         nameSpell: 'contacts'
+// }, {
+//     name: '公众号',
+//         nameSpell: 'frindes'
+// }
 
 let friends = [
     {

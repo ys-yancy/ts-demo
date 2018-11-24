@@ -2,22 +2,11 @@
  * Mobx Contacts
 */
 
-interface Contacts {
-    name: string;
-    avatar: string;
-    sign: any;
-    status: string;
-    statusSpell: string;
-    device: string;
-    userId: string;
-}
-
-
 function getContactId(): string {
     return Math.random().toString(10).substr(3);
 }
 
-export function createContact(index: number): Contacts {
+export function createContact(index: number): any {
     return {
         name: `我的f-${index}`,
         avatar: 'https://pic.qqtn.com/up/2018-7/2018073108442699856.jpg',
@@ -30,7 +19,7 @@ export function createContact(index: number): Contacts {
 }
 
 export async function getContactList(count = 20) {
-    let result: Contacts[] = [];
+    let result: any[] = [];
     for (let i = 0; i < count; i++) {
         result.push(createContact(i));
     }

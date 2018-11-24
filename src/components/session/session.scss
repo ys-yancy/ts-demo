@@ -1,12 +1,10 @@
 @import '../../mixin';
-.session-list{
+$prefixCls: 'app-session';
+
+.#{$prefixCls}-session-item {
+    @include padding(10, 0);
+    color: rgba(0, 0, 0, 0.8);
     :global {
-        a{
-            color: inherit;
-        }
-        .session-item{
-            @include padding(10, 0);
-        }
         .avatar-wrapper {
             display: inline-block;
             @include padding(0, 30);
@@ -23,8 +21,9 @@
             }
         }
         .content-wrapper{
+            position: relative;
             display: inline-block;
-            @include padding-bottom(30);
+            @include padding-bottom(15);
             @include border-bottom(1, solid, #ccc);
             vertical-align: top;
             .name-and-time {
@@ -63,11 +62,11 @@
             }
             .count{
                 position: absolute;
-                @include width(40);
-                @include height(40);
-                @include line-height(40);
+                @include width(30);
+                @include height(30);
+                @include line-height(30);
+                @include top(50);
                 @include right(25);
-                @include bottom(0);
                 @include font-size(26);
                 text-align: center;
                 color: #fff;

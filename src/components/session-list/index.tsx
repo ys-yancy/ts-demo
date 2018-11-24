@@ -1,65 +1,76 @@
 import * as React from 'react';
-import classnames from 'classnames';
-import CssModules from 'react-css-modules';
-import SessionItem from './Item';
-import { getSessionList } from './mobx';
+import * as ReactDOM from 'react-dom';
+import classNames from 'classnames';
+import cssModules from 'react-css-modules';
+import SessionItem, { SessionInterface } from '../session/session';
+import styles from './index.scss';
 
-interface Session {
-	name: string;
-	avatar: string;
-	lastMessage: any;
-	sessionId: string;
-	sessionName: string;
+export interface SessionListProps {
+	prefixCls?: string;
+	dataSource: SessionInterface[];
+	renderEmpty?: string;
 }
 
-interface Props {
-
+export interface SessionListStates {
+	sessionList: SessionInterface[];
 }
 
-interface State {
-	loading: boolean;
-	sessionList: Session[];
-}
+@cssModules(styles, { allowMultiple: true })
+export default class SessionList extends React.Component<SessionListProps, SessionListStates> {
+	static SessionItem: typeof SessionItem = SessionItem;
 
-export default class SessionList extends React.Component<Props, State> {
-	static Items = SessionItem;
-	constructor(props: Props) {
-		super(props);
+	static defaultProps: SessionListProps = {
+		prefixCls: 'app-session-list',
+		dataSource: [],
+		renderEmpty: '当前没有数据',
+	};
 
-		this.state = {
-			loading: true,
-			sessionList: [],
+	state: any = {
+		sessionList: []
+	};
+
+	shouldComponentUpdate(nextProps: any, currProps: any) {
+		nextProps = JSON.stringify(nextProps);
+		currProps = JSON.stringify(currProps);
+
+		if (nextProps === currProps) {
+			return false;
+		} else {
+			return true;
 		}
-	}
+	};
 
-	//todo 编辑不支持async 之后具体改进一下
-	componentDidMount() {
-		this.getSessionList();
-	}
+	componentWillReceiveProps(nextProps: SessionListProps) {
+		let { dataSource: sessionList } = nextProps;
 
-	getSessionList() {
-		getSessionList().then(list => {
-			this.hideLoading();
-			this.setState({
-				sessionList: list
-			});
-		});
-	}
-
-	hideLoading() {
 		this.setState({
-			loading: false,
-		});
+			sessionList,
+		})
 	}
 
+	renderEmpty() {
+		let { renderEmpty } = this.props;
+		return (
+			<li styleName="session-list_empty">
+				<p>{ renderEmpty }</p>
+			</li>
+		);
+	}
 
 	render() {
-		const { loading: isShowLoading, sessionList: list } = this.state;
+		let { sessionList } = this.state;
+		let content = null;
 
-		return (
-			isShowLoading ? 
-				<span style={{ display: 'block', height: '5rem', paddingTop: '2rem', textAlign: 'center', fontSize:'.42rem'}}>加载中...</span>:
-				<SessionItem list={list} />
-		);
+		if (sessionList.length) {
+			content = sessionList.map((session: SessionInterface) => 
+				(<SessionItem key={session.sessionId} session={session}/>)
+			);
+		} else {
+			content = this.renderEmpty();
+		}
+
+		return (<ul styleName="session-list">
+			{ content }
+		</ul>)
 	}
 }

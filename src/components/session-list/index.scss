@@ -1,0 +1,10 @@
+@import '../../mixin';
+.session-list {
+    background: inherit;
+}
+
+.session-list_empty {
+    @include padding(25, 0);
+    @include font-size(24);
+    text-align: center;
+}

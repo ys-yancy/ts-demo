@@ -1,47 +1,40 @@
 /**
  * 联系人
- * 需要重构
  */
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import Tip from '../../components/SessionTip/index';
 import Routes from '../../components/SessionRoutes/index';
 import Title from './title';
 import Group from './group';
 import Device from './device/device';
-import Contacts from '../../components/contacts/index';
 import getTitleList, { getGroupList } from './mobx';
 
-export interface Titleface {
+export interface TitleInterface {
     name: string;
     nameSpell: string;
     id?: string;
 }
 
-export interface Titleface {
-    groupName: string;
-    all_count: number;
-    all_online: number;
-    isOpen: boolean;
-    contacts: Contacts[];
+export interface SessionStates {
+    groupList: any[];
+    showDevicePanel: boolean;
 }
 
 export default class Session extends React.Component<any, any> {
+    state: SessionStates = {
+        groupList: [],
+        showDevicePanel: false,
+    }
     constructor(props: any) {
         super(props);
         this.clickTitle = this.clickTitle.bind(this);
-
-        this.state = {
-            groupList: [],
-            showDevicePanel: false,
-        }
     }
 
     componentWillMount() {
         this.getGroupList();
     }
 
-    async clickTitle(title: Titleface) {
+    async clickTitle(title: TitleInterface) {
         if (title.nameSpell === 'device') {
             this.setState({
                 showDevicePanel: true
@@ -57,7 +50,7 @@ export default class Session extends React.Component<any, any> {
         });
     }
 
-    async getGroupList(title?: Titleface) {
+    async getGroupList(title?: TitleInterface) {
         let list = await getGroupList(title);
 
         this.setState({
@@ -79,22 +72,25 @@ export default class Session extends React.Component<any, any> {
 
     render() {
         let { groupList, showDevicePanel } = this.state;
-        const renderTip = this.getTipContent();
-        
+        let renderTip = this.getTipContent();
+        let content: React.ReactNode = null;
+
+        if (showDevicePanel) {
+            content = <Device />;
+        } else {
+            content = <Group groupList={groupList} />;
+        }
+
         return (
             <React.Fragment>
                 {renderTip}
                 <Routes />
-                <Title currentTitle="friends" 
+                <Title currentTitle="friends"
                     getTitleList={getTitleList}
                     clickCallback={this.clickTitle}
-                    />
-                {
-                    showDevicePanel ? 
-                        <Device/> :
-                        <Group groupList={groupList}/>
-                }
+                />
+                {content }
             </React.Fragment>
-        )
+        );
     }
 }

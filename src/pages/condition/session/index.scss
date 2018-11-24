@@ -1,0 +1,35 @@
+@import '../../../mixin';
+:global {
+.conditon-session-inner {
+    @include padding(0, 24);
+}
+.condition-session {
+    @include padding-bottom(20);
+    border-bottom: 1px solid #ccc;
+    .avatar {
+        @include width(60);
+        @include height(60);
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+    .name {
+        display: inline-block;
+        @include width(400);
+        @include font-size(32);
+        @include padding-left(24);
+        vertical-align: middle;
+    }
+    .arrow{
+        float: right;
+        @include width(44);
+        @include height(44);
+        @include line-height(44);
+        @include margin-top(10);
+        @include margin-right(-12);
+        @include margin-left(12);
+        @include font-size(40);
+        text-align: right;
+        font-family: "iconfont"!important;
+        color: rgba(202, 133, 133, .6);
+    }
+}}

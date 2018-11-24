@@ -14,14 +14,18 @@ export interface Contacts {
     userId: string;
 }
 
-interface Props {
+export interface ContactProps {
     list: Contacts[];
+    prefixCls?: string;
 }
 
 @CssModules(styles, { allowMultiple: true })
-export default class ContactItem extends React.Component<Props, any> {
+export default class ContactItem extends React.Component<ContactProps, any> {
+    static defaultProps = {
+        prefixCls: 'app-contact',
+    };
 
-    constructor(props: Props) {
+    constructor(props: ContactProps) {
         super(props);
     }
 
@@ -31,38 +35,28 @@ export default class ContactItem extends React.Component<Props, any> {
         });
     }
 
-    componentWillReceiveProps(nextProps: Props) {
+    componentWillReceiveProps(nextProps: ContactProps) {
 
     }
 
     render() {
-        const { list } = this.props;
-        const Items = list.map((item: Contacts) => {
-            const {
-                name,
-                avatar,
-                sign,
-                status,
-                statusSpell,
-                device,
-                userId,
-            } = item;
+        const { list, prefixCls } = this.props;
+        return list.map((contact: Contacts) => {
+            let { name, avatar, sign, status, device, userId, } = contact;
             return (
                 <Link key={userId} to="/chat">
-                    <li className='contact-item'>
-                        <div className='avatar-wrapper top'>
-                            <div className='img-outer-wrapper'>
-                                <div className='img-wrapper'>
-                                    <img className='img' src={avatar} alt="" />
-                                </div>
+                    <li styleName={`${prefixCls}-item`}>
+                        <div className='avatar-wrapper'>
+                            <div className='img-wrapper'>
+                                <img className='img' src={avatar} alt="" />
                             </div>
                         </div>
-                        <div className='content-wrapper bottom'>
+                        <div className='content-wrapper'>
                             <span className='name'>{name}</span>
                             <p>
                                 <span className='status'>
-                                     {device}{status} 
-                                    </span>
+                                    {device}{status}
+                                </span>
                                 <span className='sign'>
                                     {sign}
                                 </span>
@@ -70,17 +64,7 @@ export default class ContactItem extends React.Component<Props, any> {
                         </div>
                     </li>
                 </Link>
-            );
+            )
         });
-
-        const contact_list_classes = classnames({
-            'contact-list': true,
-        });
-
-        return (
-            < ul styleName={contact_list_classes}>
-                {Items}
-            </ul>
-        )
     }
 }
