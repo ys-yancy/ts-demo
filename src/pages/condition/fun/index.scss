@@ -1,0 +1,31 @@
+@import '../../../mixin';
+:global {
+.condition-fun-scroll {
+    @include width(750);
+    overflow: hidden;
+}
+.condition-fun-list {
+    @include width(1500);
+    @include padding(50, 24);
+    .fun-wrapper {
+        display: inline-block;
+        @include width(702);
+        
+    }
+    .inner {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: row wrap;
+    }
+    .fun-item {
+        @include width(150);
+        @include height(150);
+        @include font-size(20);
+        text-align: center;
+    }
+    .icon {
+        @include width(80);
+        @include height(80);
+        overflow: hidden;
+    }
+}}

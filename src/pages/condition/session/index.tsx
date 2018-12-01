@@ -60,7 +60,7 @@ export default class ConditionSession extends React.Component<ConditionSessionPr
 
         return (
             <ul className={`${prefixCls}-inner`}>
-                { childrenList }
+                {childrenList}
             </ul>
         )
     }
