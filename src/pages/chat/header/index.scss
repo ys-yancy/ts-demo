@@ -1,0 +1,34 @@
+@import '../../../mixin';
+.chat-header {
+    @include height(80);
+    background: #ffffff;
+    border-bottom: 1px solid #cccccc;
+}
+
+.go-back {
+    float: left;
+    position: relative;
+    @include width(45);
+    @include height(45);
+    @include margin-top(17);
+    margin-left: -100%;
+    @include left(30);
+    background: red;
+}
+
+.content {
+    float: left;
+    width: 100%;
+    height: 100%;
+    @include padding(0, 160, 0, 75);
+    background: green;
+}
+
+
+.funs {
+    float: left;
+    @include width(160);
+    @include margin-left(-160);
+    height: 100%;
+    background: pink;
+}

@@ -34,4 +34,11 @@ export default [{
             return require('../pages/search/index');
         });
     }
+}, {
+    "url": "/chat",
+    "component": (): any => {
+        return require.ensure([], () => {
+            return require('../pages/chat/index');
+        });
+    }
 }];
