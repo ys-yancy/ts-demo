@@ -1,0 +1,75 @@
+@import '../../../mixin';
+.chat-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include height(80);
+    background: rgb(252, 252, 252);
+    border-top: 1px solid #cccccc;
+}
+
+.switch {
+    float: left;
+    position: relative;
+    @include width(45);
+    @include height(45);
+    @include margin-top(15);
+    margin-left: -100%;
+    @include left(30);
+    @include font-size(50);
+    font-family: "iconfont"!important;
+    color: #000000;
+}
+
+.active-content {
+    float: left;
+    width: 100%;
+    height: 100%;
+    @include padding(0, 160, 0, 100);
+    @include font-size(32);
+    @include line-height(80);
+    text-align: center;
+    :global {
+        .audio-input,
+        .write-input {
+            @include margin-top(10);
+            @include height(60);
+            @include line-height(60);
+            @include border-radius(6);
+            border: 1px solid #ccc;
+            overflow: hidden;
+            &.audio-input:active {
+                background: red;
+            }
+        }
+        input {
+            display: block;
+            width: 100%;
+            height: 100%;
+            outline: 0;
+            @include padding-left(12);
+        }
+    }
+}
+
+
+.funs {
+    float: left;
+    @include width(160);
+    @include margin-left(-160);
+    height: 100%;
+}
+
+.emoji,
+.more {
+    display: inline-block;
+    @include width(45);
+    @include height(45);
+    @include margin-top(15);
+    @include margin-right(14);
+    @include margin-left(14);
+    @include font-size(50);
+    font-family: "iconfont"!important;
+    color: #000000;
+}

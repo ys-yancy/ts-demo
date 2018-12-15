@@ -1,0 +1,12 @@
+@import '../../../mixin';
+:global{
+.msg-item-wrapper-system {
+    width: 100%;
+    @include height(40);
+    @include line-height(40);
+    @include margin(20, 0);
+    @include font-size(24);
+    text-align: center;
+    color: rgba(0, 0, 0, .6);
+    background: #cccccc;
+}}

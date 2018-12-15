@@ -1,7 +1,7 @@
 @import '../../../mixin';
 .chat-header {
     @include height(80);
-    background: #ffffff;
+    background: rgb(252, 252, 252);
     border-bottom: 1px solid #cccccc;
 }
 
@@ -10,18 +10,22 @@
     position: relative;
     @include width(45);
     @include height(45);
-    @include margin-top(17);
+    @include margin-top(15);
     margin-left: -100%;
     @include left(30);
-    background: red;
+    @include font-size(50);
+    font-family: "iconfont"!important;
+    color: #000000;
 }
 
 .content {
     float: left;
     width: 100%;
     height: 100%;
-    @include padding(0, 160, 0, 75);
-    background: green;
+    @include padding(0, 160, 0, 160);
+    @include font-size(32);
+    @include line-height(80);
+    text-align: center;
 }
 
 
@@ -30,5 +34,17 @@
     @include width(160);
     @include margin-left(-160);
     height: 100%;
-    background: pink;
+}
+
+.mobile,
+.profile {
+    display: inline-block;
+    @include width(45);
+    @include height(45);
+    @include margin-top(15);
+    @include margin-right(14);
+    @include margin-left(14);
+    @include font-size(50);
+    font-family: "iconfont"!important;
+    color: #000000;
 }

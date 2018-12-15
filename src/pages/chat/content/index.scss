@@ -1,0 +1,6 @@
+@import '../../../mixin';
+.chat-content {
+    width: 100%;
+    @include height(1254);
+    background: rgb(252, 252, 252);
+}

@@ -17,7 +17,10 @@ module.exports = {
     },
 
     resolve: {
-    	extensions: ['.js', '.jsx', '.ts', '.tsx']
+		extensions: ['.js', '.jsx', '.ts', '.tsx'],
+		alias: {
+			'app-common': './src/common'
+		}
     },
 
     optimization: {
