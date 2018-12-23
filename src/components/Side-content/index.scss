@@ -1,0 +1,9 @@
+@import '../../mixin';
+.side-wrapper.app-side {
+    background: red;
+    position: fixed;
+    @include width(550);
+    @include left(-550);
+    top: 0;
+    bottom: 0;
+}

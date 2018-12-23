@@ -1,5 +1,23 @@
 @import '../../mixin';
+$base: 75;
+$perfix: -webkit-, -ms-, -o-, defaults;
 :global .main{
     @include padding-top(80);
     @include padding-bottom(70);
+    @each $fix in $perfix {
+        @if $fix == defaults {
+            transition: transform .3s ease;
+        } @else {
+            #{$fix}transition: transform .3s ease;
+        }
+    }
+    &.show-side{
+        @each $fix in $perfix {
+            @if $fix == defaults {
+                transform: translateX(550 / $base * 1rem);
+            } @else {
+                #{$fix}transform: translateX(550 / $base * 1rem);
+            }
+        }
+    }
 }

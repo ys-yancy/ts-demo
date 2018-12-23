@@ -5,6 +5,7 @@ interface Props {
     title?: string;
     currRouter?: string | undefined | null;
     showMore: (data?: any) => void;
+    showSide: (data?: any) => void;
 };
 
 interface State {
@@ -45,11 +46,16 @@ export default class MainFooter extends React.Component<Props, any>{
         showMore(e);
     }
 
+    showSide(e: React.MouseEvent) {
+        let { showSide } = this.props;
+        showSide();
+    }
+
     render() {
         let { title } = this.state;
         return (
             <header className='common-header'>
-                <div className={styles.avatar_outer_wrapper}>
+                <div className={styles.avatar_outer_wrapper} onClick={(e) => { this.showSide(e) }}>
                     <div className={styles.avatar_inner_wrapper}>
                         <img className={styles.avatar} src="http://pic.616pic.com/ys_b_img/00/13/14/wC1quFW3yA.jpg" alt="" />
                     </div>  
